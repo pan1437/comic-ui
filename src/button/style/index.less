@@ -1,0 +1,95 @@
+@comic-primary-color: #1890ff;
+@comic-primary-color-hover: #40a9ff;
+@comic-primary-color-active: #096dd9;
+@comic-primary-color-outline: rgba(24, 144, 255, .2);
+@comic-primary-1: #e6f7ff;
+@comic-primary-2: #bae7ff;
+@comic-primary-3: #91d5ff;
+@comic-primary-4: #69c0ff;
+@comic-primary-5: #40a9ff;
+@comic-primary-6: #1890ff;
+@comic-primary-7: #096dd9;
+@comic-primary-color-deprecated-l-35: #cbe6ff;
+@comic-primary-color-deprecated-l-20: #7ec1ff;
+@comic-primary-color-deprecated-t-20: #46a6ff;
+@comic-primary-color-deprecated-t-50: #8cc8ff;
+@comic-primary-color-deprecated-f-12: rgba(24, 144, 255, .12);
+@comic-primary-color-active-deprecated-f-30: rgba(230, 247, 255, .3);
+@comic-primary-color-active-deprecated-d-02: #dcf4ff;
+@comic-success-color: #52c41a;
+@comic-success-color-hover: #73d13d;
+@comic-success-color-active: #389e0d;
+@comic-success-color-outline: rgba(82, 196, 26, .2);
+@comic-success-color-deprecated-bg: #f6ffed;
+@comic-success-color-deprecated-border: #b7eb8f;
+@comic-error-color: #ff4d4f;
+@comic-error-color-hover: #ff7875;
+@comic-error-color-active: #d9363e;
+@comic-error-color-outline: rgba(255, 77, 79, .2);
+@comic-error-color-deprecated-bg: #fff2f0;
+@comic-error-color-deprecated-border: #ffccc7;
+@comic-warning-color: #faad14;
+@comic-warning-color-hover: #ffc53d;
+@comic-warning-color-active: #d48806;
+@comic-warning-color-outline: rgba(250, 173, 20, .2);
+@comic-warning-color-deprecated-bg: #fffbe6;
+@comic-warning-color-deprecated-border: #ffe58f;
+@comic-info-color: #1890ff;
+@comic-info-color-deprecated-bg: #e6f7ff;
+@comic-info-color-deprecated-border: #91d5ff;
+
+
+.comic-btn, .comic-btn:active, .comic-btn:focus {
+  outline: 0;
+}
+
+.comic-btn {
+  line-height: 1.5715;
+  position: relative;
+  display: inline-block;
+  font-weight: 400;
+  white-space: nowrap;
+  text-align: center;
+  background-image: none;
+  border: 1px solid transparent;
+  box-shadow: 0 2px #00000004;
+  cursor: pointer;
+  transition: all .3s cubic-bezier(.645,.045,.355,1);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  touch-action: manipulation;
+  height: 32px;
+  padding: 4px 15px;
+  font-size: 14px;
+  border-radius: 2px;
+  color: #000000d9;
+  border-color: #d9d9d9;
+  background: #fff;
+}
+.comic-btn-primary {
+  color: #fff;
+  border-color: @comic-primary-color;
+  background: @comic-primary-color;
+  text-shadow: 0 -1px 0 rgb(0 0 0 / 12%);
+  box-shadow: 0 2px #0000000b;
+}
+
+.comic-btn:not([disabled]):hover {
+  text-decoration: none;
+}
+.comic-btn-primary:hover, .comic-btn-primary:focus {
+  color: #fff;
+  border-color: @comic-primary-color-hover;
+  background: @comic-primary-color-hover;
+}
+.comic-btn:not([disabled]):active {
+  outline: 0;
+  box-shadow: none;
+}
+.comic-btn-primary:active {
+  color: #fff;
+  border-color: @comic-primary-color-active;
+  background: @comic-primary-color-active;
+}
