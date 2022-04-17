@@ -1,0 +1,45 @@
+.button-size(@height; @padding-horizontal; @font-size; @border-radius) {
+  @padding-vertical: max(
+    (round(((@height - @font-size * @line-height-base) / 2) * 10) / 10) - @border-width-base,
+    0
+  );
+  height: @height;
+  padding: @padding-vertical @padding-horizontal;
+  font-size: @font-size;
+  border-radius: @border-radius;
+}
+
+.button-color(@color; @background; @border) {
+  color: @color;
+  border-color: @border;
+  & when not(@background = null) {
+    background: @background;
+  }
+  > a:only-child {
+    color: currentcolor;
+
+    &::after {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background: transparent;
+      content: '';
+    }
+  }
+}
+
+.button-disabled(@color: @btn-disable-color; @background: @btn-disable-bg; @border: @btn-disable-border) {
+  &[disabled] {
+    &,
+    &:hover,
+    &:focus,
+    &:active {
+      .button-color(@color; @background; @border);
+      cursor: not-allowed;
+      text-shadow: none;
+      box-shadow: none;
+    }
+  }
+}

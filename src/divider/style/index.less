@@ -1,0 +1,76 @@
+@import './mixin.less';
+
+.comic-divider {
+  border-top: 1px solid @dark-gray-3;
+
+  // 水平
+  &-horizontal {
+    display: flex;
+    clear: both;
+    width: 100%;
+    min-width: 100%;
+    margin: 20px 0;
+  }
+
+  &-vertical {
+    display: inline-block;
+    height: 16px;
+    margin: 0 12px;
+    vertical-align: middle;
+    border-left: 1px solid @dark-gray-3;
+  }
+
+  &-with-text {
+    border-top: 0;
+    border-color: @dark-gray-3;
+
+    &::after {
+      position: relative;
+      top: 50%;
+      width: 50%;
+      border-top: 1px solid transparent;
+      border-top-color: inherit;
+      border-bottom: 0;
+      transform: translateY(50%);
+      content: "";
+    }
+    &::before {
+      position: relative;
+      top: 50%;
+      width: 50%;
+      border-top: 1px solid transparent;
+      border-top-color: inherit;
+      border-bottom: 0;
+      transform: translateY(50%);
+      content: "";
+    }
+
+    &-left {
+      &::before {
+        width: 5%;
+      }
+
+      &::after {
+        width: 95%;
+      }
+    }
+
+    &-right {
+      &::before {
+        width: 95%;
+      }
+
+      &::after {
+        width: 5%;
+      }
+    }
+  }
+
+  &-inner-text {
+    display: inline-block;
+    padding: 0 20px;
+    font-size: 16px;
+    white-space: nowrap;
+    color: @comic-text;
+  }
+}

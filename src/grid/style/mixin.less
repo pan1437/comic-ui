@@ -1,0 +1,19 @@
+.flex-align(@align) {
+  align-items: @align;
+}
+
+.flex-justify(@justify) {
+  justify-content: @justify;
+}
+
+each(range(24), {
+  .comic-col-@{value} {
+    width: @value / 24 * 100%;
+  }
+});
+
+each(range(24), {
+  .comic-col-offset-@{value} {
+    margin-left: @value / 24 * 100%;
+  }
+});

@@ -28,7 +28,7 @@ const root = createRoot(container);
 import Button from 'comic-ui/es/button'; // 手动按需加载 js
 import 'comic-ui/es/button/style'; // 手动按需加载 less
 
-root.render(<Button kind="warning">这是一条警告提示</Button>);
+root.render(<Button type="warning">这是一条警告提示</Button>);
 ```
 
 ### 自动按需加载

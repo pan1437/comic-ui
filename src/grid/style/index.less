@@ -1,0 +1,55 @@
+
+@import './mixin.less';
+.comic-row {
+  display: flex;
+  flex-flow: row wrap;
+  margin-bottom: 10px;
+
+  &-no-wrap {
+    flex-wrap: nowrap;
+  }
+
+  &::before,
+  &::after {
+    display: flex;
+  }
+
+  &-top {
+    .flex-align(flex-start);
+  }
+  &-middle {
+    .flex-align(center);
+  }
+  &-bottom {
+    .flex-align(flex-end);
+  }
+
+  &-start {
+    .flex-justify(flex-start);
+  }
+  &-center {
+    .flex-justify(center);
+    justify-content: center;
+  }
+  &-end {
+    .flex-justify(flex-end);
+  }
+  &-space-between {
+    .flex-justify(space-between);
+  }
+  &-space-around {
+    .flex-justify(space-around);
+  }
+}
+
+// 列
+.comic-col {
+  text-align: center;
+  min-height: 30px;
+  line-height: 30px;
+  box-sizing: border-box;
+
+  &-0 {
+    display: none;
+  }
+}

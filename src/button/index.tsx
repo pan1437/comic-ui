@@ -1,27 +1,7 @@
-import React from 'react';
-import t from 'prop-types';
+import Button from './button';
+import ButtonGroup from './group';
 
-export interface ButtonProps {
-  /**
-   * @description       Button 的类型
-   * @default           'default'
-   */
-  type?: 'primary' | 'ghost' | 'dashed' | 'link' | 'text' | 'default';
-  children?: React.ReactNode;
+export {
+  Button,
+  ButtonGroup
 }
-const classPrefix = 'comic-btn'
-
-const Button: React.FC<ButtonProps> = ({ children, type = 'default', ...rest }) => (
-  <button
-    className={`${classPrefix} ${classPrefix}-${type}`}
-    {...rest}
-  >
-    {children}
-  </button>
-);
-
-Button.propTypes = {
-  type: t.oneOf(['primary', 'ghost', 'dashed', 'link', 'text', 'default'])
-};
-
-export default Button;

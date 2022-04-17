@@ -1,7 +1,7 @@
 {
   "name": "comic-ui",
   "version": "1.0.0",
-  "description": "Comic Ui - A TypeScript UI library for React",
+  "description": "Comic UI - A TypeScript UI library for React",
   "main": "index.js",
   "scripts": {
     "dev": "dumi dev",
@@ -30,6 +30,7 @@
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "serve": "^13.0.2",
+    "style-resources-loader": "^1.5.0",
     "typescript": "^4.6.3"
   },
   "lint-staged": {
