@@ -16,5 +16,5 @@ features:
   - icon: https://gw.alipayobjects.com/zos/bmw-prod/d1ee0c6f-5aed-4a45-a507-339a4bfe076c/k7bjsocq_w144_h144.png
     title: 
     desc: Balabala
-footer: 基于react的组件库(https://d.umijs.org)
+footer: 仓库地址(https://github.com/pan1437/comic-ui) 欢迎给个 star ✨
 ---
