@@ -25,7 +25,7 @@ export interface DividerProps extends BaseElementProps {
   children?: React.ReactNode;
 
   /**
-   * @description       水平还是垂直类型
+   * @description       嵌套文字方向
    * @default           center
    */
   position?: 'left' | 'center' | 'right';
