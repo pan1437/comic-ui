@@ -3,25 +3,24 @@ import t from 'prop-types';
 import { getClassPrefix } from '../util/common';
 import classNames from 'classnames';
 
-
 export interface ScrapeCardProps extends BaseElementProps {
-
   /**
    * @description       嵌套文字
-   * @default           
+   * @default
    */
   children?: React.ReactNode;
-  width?: number
-  height?: number
+  width?: number;
+  height?: number;
 }
 
 const classPrefix = getClassPrefix('scrape');
 
 function getLocalCoords(ele: HTMLCanvasElement, ev: TouchEvent | MouseEvent) {
-  let ox = 0, oy = 0;
+  let ox = 0,
+    oy = 0;
   let first;
   let pageX, pageY;
-  let elem: HTMLElement | null = ele
+  let elem: HTMLElement | null = ele;
   // currentTarget element.
   while (elem !== null) {
     ox += elem.offsetLeft;
@@ -29,7 +28,7 @@ function getLocalCoords(ele: HTMLCanvasElement, ev: TouchEvent | MouseEvent) {
     elem = elem.offsetParent as HTMLElement;
   }
   // fix,<=IE8
-  if ("changedTouches" in ev) {
+  if ('changedTouches' in ev) {
     first = ev.changedTouches[0];
     pageX = first.pageX;
     pageY = first.pageY;
@@ -37,10 +36,16 @@ function getLocalCoords(ele: HTMLCanvasElement, ev: TouchEvent | MouseEvent) {
     pageX = ev.pageX;
     pageY = ev.pageY;
   }
-  return { 'x': pageX - ox, 'y': pageY - oy };
+  return { x: pageX - ox, y: pageY - oy };
 }
 
-function diffTransSize(ctx: CanvasRenderingContext2D, thresholdp: number, callback: (l: number) => void, width: number, height: number) {
+function diffTransSize(
+  ctx: CanvasRenderingContext2D,
+  thresholdp: number,
+  callback: (l: number) => void,
+  width: number,
+  height: number,
+) {
   let threshold = thresholdp;
   threshold = threshold || 0.5;
   if (threshold > 1 || threshold < 0) threshold = 1;
@@ -48,15 +53,24 @@ function diffTransSize(ctx: CanvasRenderingContext2D, thresholdp: number, callba
     pix = imageData.data,
     pixLength = pix.length,
     pixelSize = pixLength * 0.25;
-  let i = 1, l = 0;
-  for (; i <= pixelSize; i++) { // 3, 7, 11 -> 4n-1
+  let i = 1,
+    l = 0;
+  for (; i <= pixelSize; i++) {
+    // 3, 7, 11 -> 4n-1
     if (0 === pix[4 * i - 1]) l++;
-  };
+  }
   if (l > pixelSize * threshold) {
     callback.apply(ctx, [l]);
-  };
+  }
 }
-function scratchLine(cvs: HTMLCanvasElement, x: number, y: number, fresh: boolean, width: number, height: number) {
+function scratchLine(
+  cvs: HTMLCanvasElement,
+  x: number,
+  y: number,
+  fresh: boolean,
+  width: number,
+  height: number,
+) {
   const ctx = cvs.getContext('2d')!;
   // sumsung Android 4.1.2, 4.2.2 default browser does not render, https://goo.gl/H5lwgo
   ctx.globalCompositeOperation = 'destination-out';
@@ -75,26 +89,37 @@ function scratchLine(cvs: HTMLCanvasElement, x: number, y: number, fresh: boolea
   const style = cvs.style; // cursor/lineHeight
   style.lineHeight = style.lineHeight == '1' ? '1.1' : '1';
 
-  diffTransSize(ctx, 0.5, function () {
-    // document.getElementById('title').innerHTML = '50% complete';
-  }, width, height);
+  diffTransSize(
+    ctx,
+    0.5,
+    function () {
+      // document.getElementById('title').innerHTML = '50% complete';
+    },
+    width,
+    height,
+  );
 }
 
 export const ScrapeCard: React.FC<ScrapeCardProps> = (props) => {
   const { children, className, style, width = 400, height = 100, ...rest } = props;
-  const classes = () => classNames(classPrefix, {
-    // [`${classPrefix}-${type}`]: true,
-    // [`${classPrefix}-with-text`]: type !== 'vertical' && children,
-    // [`${classPrefix}-with-text-${position}`]: type !== 'vertical' && position,
-  }, className);
-  const target = createRef<HTMLCanvasElement>()
+  const classes = () =>
+    classNames(
+      classPrefix,
+      {
+        // [`${classPrefix}-${type}`]: true,
+        // [`${classPrefix}-with-text`]: type !== 'vertical' && children,
+        // [`${classPrefix}-with-text-${position}`]: type !== 'vertical' && position,
+      },
+      className,
+    );
+  const target = createRef<HTMLCanvasElement>();
 
   useEffect(() => {
     const cvs = target.current!;
     cvs.width = width;
     cvs.height = height;
     const ctx = target.current!.getContext('2d')!;
-    let mouseDown = false
+    let mouseDown = false;
 
     // add mask
     ctx.fillStyle = '#CCC';
@@ -104,51 +129,59 @@ export const ScrapeCard: React.FC<ScrapeCardProps> = (props) => {
       const local = getLocalCoords(cvs, e);
       mouseDown = true;
       scratchLine(cvs, local.x, local.y, true, width, height);
-      if (e.cancelable) { e.preventDefault(); }
+      if (e.cancelable) {
+        e.preventDefault();
+      }
       return false;
     };
     const mousemove_handler = function (e: TouchEvent | MouseEvent) {
-      if (!mouseDown) { return true; }
+      if (!mouseDown) {
+        return true;
+      }
       const local = getLocalCoords(cvs, e);
       scratchLine(cvs, local.x, local.y, false, width, height);
 
-      if (e.cancelable) { e.preventDefault(); }
+      if (e.cancelable) {
+        e.preventDefault();
+      }
       return false;
     };
     // On mouseup
     const mouseup_handler = function (e: TouchEvent | MouseEvent) {
       if (mouseDown) {
         mouseDown = false;
-        if (e.cancelable) { e.preventDefault(); }
+        if (e.cancelable) {
+          e.preventDefault();
+        }
         return false;
       }
       return true;
     };
 
-    cvs.addEventListener('mousedown', mousedown_handler)
-    cvs.addEventListener('touchstart', mousedown_handler)
-    window.addEventListener('mousemove', mousemove_handler)
-    window.addEventListener('touchmove', mousemove_handler)
-    window.addEventListener('mouseup', mouseup_handler)
-    window.addEventListener('touchend', mouseup_handler)
-
-
+    cvs.addEventListener('mousedown', mousedown_handler);
+    cvs.addEventListener('touchstart', mousedown_handler);
+    window.addEventListener('mousemove', mousemove_handler);
+    window.addEventListener('touchmove', mousemove_handler);
+    window.addEventListener('mouseup', mouseup_handler);
+    window.addEventListener('touchend', mouseup_handler);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, []);
 
-  const ScrapeCardStyle: React.CSSProperties = {};
+  // const ScrapeCardStyle: React.CSSProperties = {};
 
   return (
     <div className={classes()} style={{ width: `${width}px`, height: `${height}px` }}>
-      <canvas className={`${classPrefix}-canvas`} ref={target} {...rest} width={width} height={height} />
-      {children && (
-        <span className={`${classPrefix}-inner-text`}>
-          {children}
-        </span>
-      )}
+      <canvas
+        className={`${classPrefix}-canvas`}
+        ref={target}
+        {...rest}
+        width={width}
+        height={height}
+      />
+      {children && <span className={`${classPrefix}-inner-text`}>{children}</span>}
     </div>
-  )
+  );
 };
 
 ScrapeCard.propTypes = {
