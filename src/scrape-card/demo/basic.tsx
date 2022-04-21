@@ -1,5 +1,5 @@
 /**
- * title: 水平分割线
+ * title: 基础配置
  */
 
  import React from 'react';
@@ -8,6 +8,6 @@
  
  export default () => (
    <>
-     <ScrapeCard>恭喜你</ScrapeCard>
+     <ScrapeCard><span>恭喜你</span></ScrapeCard>
    </>
  );

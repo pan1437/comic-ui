@@ -9,8 +9,25 @@ export interface ScrapeCardProps extends BaseElementProps {
    * @default
    */
   children?: React.ReactNode;
-  width?: number;
-  height?: number;
+
+  /**
+   * @description       画布颜色
+   * @default            #c9cdd4
+   */
+   color?: string | CanvasGradient | CanvasPattern;
+   
+   
+  /**
+   * @description       画布宽度
+   * @default           400
+   */
+   width?: number;
+   
+  /**
+   * @description       画布高度
+   * @default           100
+   */
+  height?: number;
 }
 
 const classPrefix = getClassPrefix('scrape');
@@ -75,7 +92,7 @@ function scratchLine(
   // sumsung Android 4.1.2, 4.2.2 default browser does not render, https://goo.gl/H5lwgo
   ctx.globalCompositeOperation = 'destination-out';
 
-  ctx.lineWidth = 45;
+  ctx.lineWidth = 25;
   ctx.lineCap = ctx.lineJoin = 'round';
   ctx.strokeStyle = 'rgba(0,0,0,1)'; //'#000';
   if (fresh) {
@@ -101,7 +118,7 @@ function scratchLine(
 }
 
 export const ScrapeCard: React.FC<ScrapeCardProps> = (props) => {
-  const { children, className, style, width = 400, height = 100, ...rest } = props;
+  const { children, className, style, width = 400, height = 100,  color = '#c9cdd4', ...rest } = props;
   const classes = () =>
     classNames(
       classPrefix,
@@ -122,7 +139,7 @@ export const ScrapeCard: React.FC<ScrapeCardProps> = (props) => {
     let mouseDown = false;
 
     // add mask
-    ctx.fillStyle = '#CCC';
+    ctx.fillStyle = color;
     ctx.fillRect(0, 0, cvs.width, cvs.height);
 
     const mousedown_handler = function (e: TouchEvent | MouseEvent) {
@@ -168,10 +185,12 @@ export const ScrapeCard: React.FC<ScrapeCardProps> = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // const ScrapeCardStyle: React.CSSProperties = {};
+   const ScrapeCardStyle: React.CSSProperties = {};
+  ScrapeCardStyle.width = `${width}px`
+  ScrapeCardStyle.height = `${height}px`
 
   return (
-    <div className={classes()} style={{ width: `${width}px`, height: `${height}px` }}>
+    <div className={classes()} style={{ ...ScrapeCardStyle, ...style }}>
       <canvas
         className={`${classPrefix}-canvas`}
         ref={target}
@@ -179,11 +198,12 @@ export const ScrapeCard: React.FC<ScrapeCardProps> = (props) => {
         width={width}
         height={height}
       />
-      {children && <span className={`${classPrefix}-inner-text`}>{children}</span>}
+      {children}
     </div>
   );
 };
 
 ScrapeCard.propTypes = {
   children: t.node,
+  color: t.oneOf(['string', 'CanvasGradient', 'CanvasPattern']),
 };
