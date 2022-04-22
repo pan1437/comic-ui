@@ -5,7 +5,7 @@ nav:
   title: 组件
   order: 2
 group:
-  title: 布局
+  title: Layout
   order: 2
 ---
 
