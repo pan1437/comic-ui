@@ -1,14 +1,24 @@
 @import './mixin.less';
 
 .comic-input {
-  padding: 8px;
-  font-size: 16px;
   color: @comic-text;
-  border-radius: 4px;
   border: 1px solid @dark-gray-4;
+  background-color: @comic-white;
   background-image: none;
+  transition: all 0.5s;
+  .size(10px, 10px, 16px);
 
   &:focus-visible {
+    outline: none;
     border-color: @blue-6;
+    box-shadow: 0 0 2px @blue-6;
+    border-color: @blue-5;
+  }
+
+  &-large {
+    .size(12px, 12px, 18px);
+  }
+  &-small {
+    .size(8px, 8px, 14px);
   }
 }

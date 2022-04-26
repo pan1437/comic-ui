@@ -8,7 +8,7 @@ export interface GroupProps extends BaseElementProps{
 const classPrefix = 'comic-btn-group'
 
 const ButtonGroup: React.FC<GroupProps> = ({ children }) => {
-  const classes = () => classNames(classPrefix,);
+  const classes = () => classNames(classPrefix);
 
   return (
     <div className={classes()}>

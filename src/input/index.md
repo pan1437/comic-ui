@@ -16,3 +16,11 @@ group:
 
 ## 基础用法
 <code src="./demo/basic.tsx" />
+
+## 尺寸
+<code src="./demo/size.tsx" />
+
+
+## 密码框
+<code src="./demo/password.tsx" />
+<API src="./index.tsx">

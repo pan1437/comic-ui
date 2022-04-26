@@ -7,13 +7,13 @@ import { getClassPrefix } from '../util/common';
 export interface ButtonProps extends BaseElementProps {
   /**
    * @description       类型
-   * @default           'default'
+   * @default           default
    */
   type?: 'primary' | 'success' | 'warning' | 'danger' | 'default' | 'text' | 'link';
 
   /**
    * @description       尺寸大小
-   * @default           'middle'
+   * @default           middle
    */
   size?: 'large' | 'middle' | 'small';
 

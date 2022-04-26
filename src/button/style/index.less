@@ -30,7 +30,6 @@
 }
 
 .comic-btn {
-  line-height: 1.5715;
   position: relative;
   display: inline-block;
   font-weight: 400;
@@ -46,14 +45,13 @@
   -ms-user-select: none;
   user-select: none;
   touch-action: manipulation;
-  padding: 4px 15px;
-  font-size: 14px;
   border-radius: 5px;
   background: @comic-white;
   border-color: @comic-border-color;
   color: @comic-text;
   margin-right: 8px;
   margin-bottom: 12px;
+  .button-size(8px, 14px, 14px, 5px);
 }
 
 .comic-btn:not([disabled]):hover {
@@ -73,13 +71,11 @@
 .comic-btn {
 
   &-large {
-    padding: 6px 20px;
-    font-size: 16px;
+    .button-size(10px, 16px, 16px, 5px);
   }
 
   &-small {
-    padding: 2px 12px;
-    font-size: 12px;
+    .button-size(6px, 12px, 12px, 5px);
   }
 
   // 主色
