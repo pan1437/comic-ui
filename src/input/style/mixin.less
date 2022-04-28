@@ -4,17 +4,21 @@
   border-right-width: @border-width-base;
 }
 
-.disabled() {
-  color: @input-disabled-color;
-  background-color: @input-disabled-bg;
-  border-color: @input-border-color;
-  box-shadow: none;
-  cursor: not-allowed;
-  opacity: 1;
 
-  // &:hover {
-  //   .hover(@input-border-color);
-  // }
+.input-disabled(@color: @disable-color; @background: @gray-1; @border: @gray-4) {
+  &[disabled] {
+    &,
+    &:hover,
+    &:focus,
+    &:active {
+      color: @disable-color;
+      background-color: @background;
+      border-color:@border;
+      box-shadow: none;
+      cursor: not-allowed;
+      opacity: 1;
+    }
+  }
 }
 
 .size(@padding-horizontal; @padding-vertical; @font-size; @border-radius: 4px) {

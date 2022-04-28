@@ -17,28 +17,22 @@ export interface InputProps extends BaseElementProps {
   value?: string;
 
   /**
-   * @description    原生-输入框类型
+   * @description    输入框类型
    * @default          
    */
   type?: string;
 
   /**
-   * @description      原生-输入框占位文本
+   * @description      输入框占位文本
    * @default          
    */
   placeholder?: string;
 
   /**
-   * @description      原生-最大输入长度
+   * @description      最大输入长度
    * @default          
    */
   maxlength?: number;
-
-  /**
-   * @description      原生-最小输入长度
-   * @default          
-   */
-  minlength?: number;
 
   /**
    * @description      原生
@@ -47,10 +41,17 @@ export interface InputProps extends BaseElementProps {
   name?: string;
 
   /**
-   * @description      原生- 是否只读
+   * @description      是否只读
    * @default          
    */
-  readonly?: boolean;
+  readOnly?: boolean;
+
+  /**
+   * @description      禁用状态
+   * @default          
+   */
+   disabled?: boolean;
+
 
   /**
    * @description      尺寸
@@ -83,7 +84,7 @@ export const Input: React.FC<InputProps> = (props) => {
 
   
   return (
-    <input className={classes()} {...rest} value={inputVal} onChange={onChangeVal}></input>
+    <input className={classes()} {...rest} value={inputVal} onChange={onChangeVal} ></input>
   )
 };
 
@@ -92,9 +93,9 @@ Input.propTypes = {
   type: t.string,
   placeholder: t.string,
   maxlength: t.number,
-  minlength: t.number,
   name: t.string,
-  readonly: t.bool,
+  readOnly: t.bool,
+  disabled: t.bool,
   size: t.oneOf(['large', 'middle', 'small']),
 
 };
