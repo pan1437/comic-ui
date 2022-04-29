@@ -31,4 +31,6 @@ group:
 ###### 更多属性用法 maxlength、readOnly、相关事件等等属性
 <code src="./demo/primordial.tsx" />
 
+<code src="./demo/clear.tsx">
+
 <API src="./index.tsx">

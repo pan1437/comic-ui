@@ -1,4 +1,4 @@
-import type { ChangeEvent } from 'react';
+import type { ChangeEvent, KeyboardEvent } from 'react';
 import React, { useState } from 'react';
 import t from 'prop-types';
 import { getClassPrefix } from '../util/common';
@@ -60,10 +60,22 @@ export interface InputProps extends BaseElementProps {
   size?: 'large' | 'middle' | 'small';
 
   /**
+   * @description      点击清除图标删除内容
+   * @default          false
+   */
+   allowClear?: boolean;
+
+  /**
    * @description     input值改变回调 (返回事件对象 非input框值)
    * @default
    */
-  onChange?: (event: any) => void;
+  onChange?: (e: any) => void;
+
+  /**
+   * @description     键盘回车事件回调
+   * @default
+   */
+  onSeach?: (e: any) => void;
 
   autoComplete?: string;
 }
@@ -79,6 +91,7 @@ export const Input: React.FC<InputProps> = (props) => {
     value = '',
     autoComplete,
     onChange = () => {},
+    onSeach = () => {},
     ...rest
   } = props;
   const classes = () =>
@@ -100,6 +113,12 @@ export const Input: React.FC<InputProps> = (props) => {
 
   const autoCompleteAttr = () => (type === 'password' ? autoComplete || 'new-password' : void 0);
 
+
+  // enter event
+  const onKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+    e.key === 'Enter' && onSeach(e);
+  }
+
   return (
     <input
       className={classes()}
@@ -107,6 +126,7 @@ export const Input: React.FC<InputProps> = (props) => {
       type={type}
       autoComplete={autoCompleteAttr()}
       onChange={onChangeVal}
+      onKeyDown={onKeyDown}
       {...rest}
     />
   );
@@ -120,5 +140,6 @@ Input.propTypes = {
   name: t.string,
   readOnly: t.bool,
   disabled: t.bool,
+  allowClear: t.bool,
   size: t.oneOf(['large', 'middle', 'small']),
 };
