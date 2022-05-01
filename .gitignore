@@ -13,3 +13,7 @@ src/.umi/
 
 # lint cache file 
 .eslintcache
+
+lib
+esm
+es

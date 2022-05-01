@@ -2,9 +2,11 @@
   "name": "comic-ui",
   "version": "1.0.0",
   "description": "Comic UI - A TypeScript UI library for React",
-  "main": "index.js",
+  "main": "es/index.js",
+  "typings": "es/index.d.ts",
   "scripts": {
     "dev": "dumi dev",
+    "build:types": "tsc -p tsconfig.build.json && cpr lib esm",
     "build:site": "rimraf doc-site && dumi build",
     "preview:site": "cross-env SITE_BUILD_ENV=PREVIEW npm run build:site && serve doc-site",
     "commit": "git-cz",
@@ -15,31 +17,35 @@
     "lint:js": "eslint --cache --ext .js,.jsx,.ts,.tsx --format=pretty ./src",
     "lint:prettier": "prettier -c --write \"src/**/*\" --end-of-line auto",
     "lint:style": "stylelint --fix \"src/**/*.less\" --syntax less",
-    "tsc": "tsc --noEmit",
-    "deploy:site": "npm run build:site && gh-pages -d doc-site"
+    "deploy:site": "npm run build:site && gh-pages -d doc-site",
+    "build": "father build"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
+  },
   "devDependencies": {
     "@commitlint/cli": "^16.2.3",
     "@commitlint/config-conventional": "^16.2.1",
-    "@types/react": "^18.0.0",
-    "@types/react-dom": "^18.0.0",
+    "@types/react": "^16.8.0",
+    "@types/react-dom": "^16.8.0",
     "@umijs/fabric": "^2.10.2",
     "commitizen": "^4.2.4",
-    "cross-env": "^7.0.3",
     "cz-conventional-changelog": "^3.3.0",
     "dumi": "^1.1.40",
+    "father": "^2.30.19",
     "gh-pages": "^3.2.3",
     "husky": "^3.1.0",
     "lint-staged": "^12.3.7",
     "prettier": "^2.6.2",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0",
     "serve": "^13.0.2",
     "style-resources-loader": "^1.5.0",
-    "typescript": "^4.6.3"
+    "typescript": "^3.7.3"
   },
   "lint-staged": {
     "src/**/*.ts?(x)": [
@@ -64,6 +70,7 @@
     }
   },
   "dependencies": {
+    "@babel/runtime": "^7.17.9",
     "prop-types": "^15.8.1"
   }
 }
