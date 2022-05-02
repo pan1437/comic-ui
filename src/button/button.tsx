@@ -18,51 +18,51 @@ export interface ButtonProps extends BaseElementProps {
   size?: 'large' | 'middle' | 'small';
 
   children?: React.ReactNode;
-  
+
   /**
    * @description       按钮失效状态
-   * @default   false        
+   * @default   false
    */
   disabled?: boolean;
 
   /**
    * @description       镂空按钮
-   * @default   false        
+   * @default   false
    */
-   plain?: boolean;
+  plain?: boolean;
 
   /**
    * @description       是否为圆角按钮
-   * @default   false        
+   * @default   false
    */
-   round?: boolean;
+  round?: boolean;
 
   /**
-   * @description       点击事件回调    
+   * @description       点击事件回调
    */
-  onClick?: (event: any) => void
+  onClick?: (event: any) => void;
 }
 const classPrefix = getClassPrefix('btn');
 
 const Button: React.FC<ButtonProps> = (props) => {
-  const { children, type = 'default', plain, size, round, className, ...rest } = props
-  const classes = () => classNames(classPrefix, {
-    [`${classPrefix}-${type}`]: true,
-    [`${classPrefix}-${size}`]: !!size,
-    ['is-plain']: plain,
-    ['is-round']: round,
-  }, className);
-
-  
+  const { children, type = 'default', plain, size, round, className, ...rest } = props;
+  const classes = () =>
+    classNames(
+      classPrefix,
+      {
+        [`${classPrefix}-${type}`]: true,
+        [`${classPrefix}-${size}`]: !!size,
+        ['is-plain']: plain,
+        ['is-round']: round,
+      },
+      className,
+    );
 
   return (
-    <button
-      className={classes()}
-      {...rest}
-    >
+    <button className={classes()} {...rest}>
       {children}
     </button>
-  )
+  );
 };
 
 Button.propTypes = {

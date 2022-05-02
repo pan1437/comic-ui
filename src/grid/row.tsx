@@ -4,13 +4,12 @@ import classNames from 'classnames';
 import { getClassPrefix } from '../util/common';
 import { RowContext } from './RowContext';
 
-export interface RowProps extends BaseElementProps{
-
-  /**  
+export interface RowProps extends BaseElementProps {
+  /**
    * @description      栅格间隔 (1.0.0 仅支持number类型)
    * @default           0
    */
-   gutter?: number;
+  gutter?: number;
 
   /**
    * @description      flex 布局下的垂直排列方式
@@ -35,36 +34,38 @@ export interface RowProps extends BaseElementProps{
 const classPrefix = getClassPrefix('row');
 
 const Row: React.FC<RowProps> = (props) => {
-  const { align, gutter, justify, wrap, children, style, className, ...rest } = props
-  const classes = () => classNames(classPrefix, {
-    [`${classPrefix}-${align}`]: !!align,
-    [`${classPrefix}-${justify}`]: !!justify,
-    [`${classPrefix}-no-wrap`]: !wrap
-  },className);
+  const { align, gutter, justify, wrap, children, style, className, ...rest } = props;
+  const classes = () =>
+    classNames(
+      classPrefix,
+      {
+        [`${classPrefix}-${align}`]: !!align,
+        [`${classPrefix}-${justify}`]: !!justify,
+        [`${classPrefix}-no-wrap`]: !wrap,
+      },
+      className,
+    );
 
   const rowStyle: React.CSSProperties = {};
-  if(gutter) {
+  if (gutter) {
     rowStyle.marginLeft = gutter / -2;
     rowStyle.marginRight = gutter / -2;
   }
 
-  const rowContext = useMemo(() => ({
-    gutter,
-  }), [gutter]);
-
-  
+  const rowContext = useMemo(
+    () => ({
+      gutter,
+    }),
+    [gutter],
+  );
 
   return (
     <RowContext.Provider value={rowContext}>
-      <div
-        className={classes()}
-        style={{ ...rowStyle, ...style }}
-        {...rest}
-      >
+      <div className={classes()} style={{ ...rowStyle, ...style }} {...rest}>
         {children}
       </div>
     </RowContext.Provider>
-  )
+  );
 };
 
 Row.propTypes = {

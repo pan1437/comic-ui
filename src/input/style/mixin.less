@@ -1,28 +1,28 @@
-
 .hover(@color: @input-hover-border-color) {
   border-color: @color;
   border-right-width: @border-width-base;
 }
 
-
 .input-disabled(@color: @disable-color; @background: @gray-1; @border: @gray-4) {
-  &[disabled] {
-    &,
-    &:hover,
-    &:focus,
-    &:active {
-      color: @disable-color;
-      background-color: @background;
-      border-color:@border;
-      box-shadow: none;
-      cursor: not-allowed;
-      opacity: 1;
-    }
+  &,
+  & > input,
+  &:hover,
+  &:focus,
+  &:active {
+    color: @disable-color;
+    background-color: @background;
+    border-color: @border;
+    box-shadow: none;
+    cursor: not-allowed;
+    opacity: 1;
   }
 }
 
-.size(@padding-horizontal; @padding-vertical; @font-size; @border-radius: 4px) {
-  padding: @padding-horizontal @padding-vertical;
-  font-size: @font-size;
+.size(@height; @font-size; @border-radius: 4px) {
+  height: @height;
+  line-height: @height;
   border-radius: @border-radius;
+  input {
+    font-size: @font-size;
+  }
 }

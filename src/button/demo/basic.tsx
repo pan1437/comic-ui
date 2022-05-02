@@ -16,16 +16,32 @@ export default () => (
       <Button type="danger">Danger Button</Button>
     </Row>
     <Row>
-      <Button type="primary" round>圆角按钮</Button>
-      <Button type="success" round>圆角按钮</Button>
-      <Button type="warning" round>圆角按钮</Button>
-      <Button type="danger" round>圆角按钮</Button>
+      <Button type="primary" round>
+        圆角按钮
+      </Button>
+      <Button type="success" round>
+        圆角按钮
+      </Button>
+      <Button type="warning" round>
+        圆角按钮
+      </Button>
+      <Button type="danger" round>
+        圆角按钮
+      </Button>
     </Row>
     <Row>
-      <Button type="primary" plain>镂空按钮</Button>
-      <Button type="success" plain>镂空按钮</Button>
-      <Button type="warning" plain>镂空按钮</Button>
-      <Button type="danger" plain>镂空按钮</Button>
+      <Button type="primary" plain>
+        镂空按钮
+      </Button>
+      <Button type="success" plain>
+        镂空按钮
+      </Button>
+      <Button type="warning" plain>
+        镂空按钮
+      </Button>
+      <Button type="danger" plain>
+        镂空按钮
+      </Button>
     </Row>
     <Button type="text">Text</Button>
     <Button type="link">Link</Button>

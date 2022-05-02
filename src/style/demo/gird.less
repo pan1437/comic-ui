@@ -1,21 +1,25 @@
-#grid-basic, #grid-align, #grid-wrap, #grid-offset {
+#grid-basic,
+#grid-align,
+#grid-wrap,
+#grid-offset {
   .comic-col {
-    background: @arcoblue-3;
-    color: @arcoblue-7;
     padding: 8px 0;
+    color: @arcoblue-7;
+    background: @arcoblue-3;
     &:nth-child(2n) {
-      background: @arcoblue-4;
       color: @arcoblue-8;
+      background: @arcoblue-4;
     }
   }
 }
 
-#grid-gutter, #grid-justify {
+#grid-gutter,
+#grid-justify {
   .comic-col {
     > div {
-      background: @arcoblue-3;
-      color: @arcoblue-7;
       padding: 8px 0;
+      color: @arcoblue-7;
+      background: @arcoblue-3;
     }
   }
 }

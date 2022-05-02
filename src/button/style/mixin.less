@@ -11,7 +11,7 @@
     background: @background;
   }
   > a:only-child {
-    color: currentcolor;
+    color: currentColor;
 
     &::after {
       position: absolute;
@@ -32,9 +32,10 @@
     &:focus,
     &:active {
       .button-color(@color; @background; @border);
-      cursor: not-allowed;
+
       text-shadow: none;
       box-shadow: none;
+      cursor: not-allowed;
     }
   }
 }

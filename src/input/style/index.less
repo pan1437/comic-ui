@@ -1,28 +1,42 @@
 @import './mixin.less';
-
 .comic-input {
-  color: @comic-text;
-  border: 1px solid @dark-gray-4;
-  background-color: @comic-white;
-  background-image: none;
-  transition: all 0.5s;
-  .size(8px, 8px, 14px);
+  &-affix-wrapper {
+    position: relative;
+    display: inline-block;
+    padding: 0 10px;
+    color: @comic-text;
+    background-color: @comic-white;
+    border: 1px solid @dark-gray-4;
+    transition: all 0.5s;
+    .size(32px, 14px);
 
-  &:focus-visible {
-    outline: none;
-    border-color: @blue-6;
-    box-shadow: 0 0 2px @blue-6;
-    border-color: @blue-5;
-  }
+    &-large {
+      .size(36px, 16px);
+    }
+    &-small {
+      .size(28px, 12px);
+    }
 
-  &[disabled] {
-    .input-disabled();
-  }
+    &-disabled {
+      .input-disabled();
+    }
 
-  &-large {
-    .size(10px, 10px, 16px);
-  }
-  &-small {
-    .size(6px, 6px, 12px);
+    .icon {
+      position: absolute;
+      top: 50%;
+      right: 5px;
+      color: @dark-gray-5;
+      transform: translateY(-50%);
+    }
+
+    > input.comic-input {
+      padding: 0;
+      border: none;
+      outline: none;
+    }
+    &-focused {
+      border-color: @blue-5;
+      box-shadow: 0 0 2px @blue-6;
+    }
   }
 }
