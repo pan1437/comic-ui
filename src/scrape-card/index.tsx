@@ -133,10 +133,8 @@ export const ScrapeCard: React.FC<ScrapeCardProps> = (props) => {
     color = '#c9cdd4',
     ...rest
   } = props;
-  const classes = () => classNames(classPrefix, className);
-
-  const innerClasses = () =>
-    classNames(`${classPrefix}-canvas`, {
+  const classes = () =>
+    classNames(classPrefix, className, {
       [`${classPrefix}-round`]: round,
     });
 
@@ -202,7 +200,13 @@ export const ScrapeCard: React.FC<ScrapeCardProps> = (props) => {
 
   return (
     <div className={classes()} style={{ ...ScrapeCardStyle, ...style }}>
-      <canvas className={innerClasses()} ref={target} {...rest} width={width} height={height} />
+      <canvas
+        className={`${classPrefix}-canvas`}
+        ref={target}
+        {...rest}
+        width={width}
+        height={height}
+      />
       {children}
     </div>
   );

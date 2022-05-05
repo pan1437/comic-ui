@@ -15,13 +15,14 @@ group:
 
 <code src="./demo/basic.tsx" />
 
-###### 同时也能嵌套图片使用
-
-<code src="./demo/image.tsx" />
 
 ## 圆角
 
 <code src="./demo/round.tsx" />
+
+###### 同时也能嵌套图片使用
+
+<code src="./demo/image.tsx" />
 
 ## 颜色
 
@@ -29,6 +30,5 @@ group:
 
 <code src="./demo/color.tsx" />
 
-###### scrape-card 同时也能嵌套图片使用
 
 <API src="./index.tsx">
