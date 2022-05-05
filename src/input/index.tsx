@@ -105,7 +105,6 @@ export const Input: React.FC<InputProps> = (props) => {
   const {
     className,
     type = 'text',
-    style,
     size,
     value = '',
     autoComplete,
@@ -126,6 +125,7 @@ export const Input: React.FC<InputProps> = (props) => {
         [`${classWrapperPrefix}-focused`]: focused,
         [`${classWrapperPrefix}-${size}`]: !!size,
         [`${classWrapperPrefix}-disabled`]: rest.disabled,
+        [`${classWrapperPrefix}-suffix`]: type === 'password' || allowClear,
       },
       className,
     );

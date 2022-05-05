@@ -1,8 +1,3 @@
-.hover(@color: @input-hover-border-color) {
-  border-color: @color;
-  border-right-width: @border-width-base;
-}
-
 .input-disabled(@color: @disable-color; @background: @gray-1; @border: @gray-4) {
   &,
   & > input,
@@ -25,4 +20,12 @@
   input {
     font-size: @font-size;
   }
+}
+// 1.0.0 只支持后缀
+.extra(@right, @color: @dark-gray-5) {
+  position: absolute;
+  top: 50%;
+  right: @right;
+  color: @color;
+  transform: translateY(-50%);
 }

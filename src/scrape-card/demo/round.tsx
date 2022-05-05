@@ -1,5 +1,6 @@
 /**
- * title: 基础用法
+ * title: 画布圆角
+ * desc: 通过round 属性可以指定画布圆角属性
  */
 
 import React from 'react';
@@ -14,8 +15,8 @@ const style: React.CSSProperties = {
 
 export default () => (
   <>
-    <ScrapeCard>
-      <span style={style}>恭喜你中了一等奖!</span>
+    <ScrapeCard round>
+      <span style={style}>(⊙o⊙) 谢谢惠顾</span>
     </ScrapeCard>
   </>
 );

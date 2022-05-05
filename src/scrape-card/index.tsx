@@ -5,7 +5,7 @@ import classNames from 'classnames';
 
 export interface ScrapeCardProps extends BaseElementProps {
   /**
-   * @description       嵌套文字
+   * @description       嵌套内容
    * @default
    */
   children?: React.ReactNode;
@@ -14,7 +14,13 @@ export interface ScrapeCardProps extends BaseElementProps {
    * @description       画布颜色
    * @default            #c9cdd4
    */
-  color?: string | CanvasGradient | CanvasPattern;
+  color?: string;
+
+  /**
+   * @description       圆角
+   * @default            false
+   */
+  round?: boolean;
 
   /**
    * @description       画布宽度
@@ -123,19 +129,17 @@ export const ScrapeCard: React.FC<ScrapeCardProps> = (props) => {
     style,
     width = 400,
     height = 100,
+    round,
     color = '#c9cdd4',
     ...rest
   } = props;
-  const classes = () =>
-    classNames(
-      classPrefix,
-      {
-        // [`${classPrefix}-${type}`]: true,
-        // [`${classPrefix}-with-text`]: type !== 'vertical' && children,
-        // [`${classPrefix}-with-text-${position}`]: type !== 'vertical' && position,
-      },
-      className,
-    );
+  const classes = () => classNames(classPrefix, className);
+
+  const innerClasses = () =>
+    classNames(`${classPrefix}-canvas`, {
+      [`${classPrefix}-round`]: round,
+    });
+
   const target = createRef<HTMLCanvasElement>();
 
   useEffect(() => {
@@ -198,13 +202,7 @@ export const ScrapeCard: React.FC<ScrapeCardProps> = (props) => {
 
   return (
     <div className={classes()} style={{ ...ScrapeCardStyle, ...style }}>
-      <canvas
-        className={`${classPrefix}-canvas`}
-        ref={target}
-        {...rest}
-        width={width}
-        height={height}
-      />
+      <canvas className={innerClasses()} ref={target} {...rest} width={width} height={height} />
       {children}
     </div>
   );
@@ -212,5 +210,6 @@ export const ScrapeCard: React.FC<ScrapeCardProps> = (props) => {
 
 ScrapeCard.propTypes = {
   children: t.node,
-  color: t.oneOf(['string', 'CanvasGradient', 'CanvasPattern']),
+  round: t.bool,
+  color: t.string,
 };
