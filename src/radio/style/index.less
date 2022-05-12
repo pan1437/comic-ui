@@ -1,0 +1,75 @@
+@import './mixin.less';
+
+.comic-radio {
+  &-wrapper {
+    .flex(inline-flex, null, center);
+
+    cursor: pointer;
+    font-size: 14px;
+    margin-right: 14px;
+    box-sizing: border-box;
+    color: @comic-text;
+
+    .comic-radio {
+      position: absolute;
+      opacity: 0;
+
+      &-inner {
+        transition: all 0.5s;
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 14px;
+        height: 14px;
+        margin-right: 8px;
+        border: 1px solid @dark-gray-5;
+        border-radius: 50%;
+
+        &:hover {
+          border-color: @blue-5;
+        }
+        &::after {
+          content: '';
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          background-color: @blue-5;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%) scale(0);
+          transition: transform ease .3s;
+        }
+      }
+    }
+  }
+
+  &-focused {
+    .comic-radio-inner {
+      box-shadow: 0 0 0 3px @blue-1;
+    }
+  }
+
+  &-checked {
+    .comic-radio-inner {
+      border-color: @blue-5;
+  
+      &::after {
+        transform: translate(-50%, -50%) scale(1);
+      }
+    }
+  }
+
+  &-disabled {
+    .radio-disabled();
+    .comic-radio-inner {
+      border-color: @disable-color;
+      &::after {
+        background-color: @disable-color;
+      }
+      &:hover {
+        border-color: unset;
+      }
+    }
+  }
+}

@@ -6,7 +6,7 @@ nav:
   order: 2
 group:
   title: Layout
-  order: 2
+  order: 1
 ---
 
 # Divider 分割线

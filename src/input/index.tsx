@@ -23,7 +23,7 @@ export interface InputProps extends BaseElementProps {
    * @description    输入框类型
    * @default
    */
-  type?: string;
+  type?: 'text' | 'password';
 
   /**
    * @description      输入框占位文本
@@ -165,7 +165,7 @@ export const Input: React.FC<InputProps> = (props) => {
     });
   };
 
-  const iconClick = (e: MouseEventHandler<SVGSVGElement>, _type: string) => {
+  const iconClick = (e: MouseEventHandler<SVGSVGElement>, _type: 'text' | 'password') => {
     setInputType(_type);
     inputOnFocus();
   };
@@ -207,7 +207,7 @@ export const Input: React.FC<InputProps> = (props) => {
 
 Input.propTypes = {
   value: t.string,
-  type: t.string,
+  type: t.oneOf(['text', 'password']),
   placeholder: t.string,
   maxLength: t.number,
   name: t.string,

@@ -1,0 +1,15 @@
+.flex(@flex: flex,  @content: null, @align: null, @direction: null,  @wrap: wrap) {
+  display: @flex;
+  & when not(@content = null) {
+    justify-content: @content;
+  }
+  & when not(@align =  null) {
+    align-items: @align;
+  }
+  & when not(@direction = null) {
+    flex-direction: @direction;
+  }
+  & when not(@wrap = null) {
+    flex-wrap: @wrap;
+  }
+}
