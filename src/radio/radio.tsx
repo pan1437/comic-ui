@@ -96,6 +96,7 @@ const Radio: React.FC<RadioProps> = (props) => {
 Radio.propTypes = {
   disabled: t.bool,
   checked: t.bool,
+  value: t.any
 };
 
 export default Radio;

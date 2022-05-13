@@ -1,22 +1,24 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { RadioGroupContext } from './RadioGroupContext';
+import t, { number, string } from 'prop-types';
 
 export interface RadioGroupProps extends BaseElementProps {
+  children: ReactNode;
   /**
    * @description   用于设置当前选中的值
    * @default
    */
-  value: string | number;
+  value?: any;
 
   /**
    * @description   选项变化时的回调函数
    * @default
    */
-  onChange?: (value: string | number) => void;
+  onChange?: (value: any) => void;
 }
 
 const RadioGroup: React.FC<RadioGroupProps> = (props) => {
-  const groupChange = (value: string) => {
+  const groupChange = (value?: any) => {
     props.onChange?.(value);
   };
 
@@ -30,6 +32,10 @@ const RadioGroup: React.FC<RadioGroupProps> = (props) => {
       {props.children}
     </RadioGroupContext.Provider>
   );
+};
+
+RadioGroup.propTypes = {
+  value: t.oneOfType([string, number])
 };
 
 export default RadioGroup;
