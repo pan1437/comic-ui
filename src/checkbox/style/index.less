@@ -1,6 +1,6 @@
 @import './mixin.less';
 
-.comic-radio {
+.comic-checkbox {
   &-wrapper {
     .flex(inline-flex, null, center);
 
@@ -10,7 +10,7 @@
     box-sizing: border-box;
     color: @comic-text;
 
-    .comic-radio {
+    .comic-checkbox {
       position: absolute;
       opacity: 0;
 
@@ -22,22 +22,24 @@
         width: 14px;
         height: 14px;
         margin-right: 8px;
+        border-radius: 2px;
         border: 1px solid @dark-gray-5;
-        border-radius: 50%;
 
         &:hover {
           border-color: @blue-5;
         }
         &::after {
           content: '';
-          width: 8px;
-          height: 8px;
-          border-radius: 50%;
-          background-color: @blue-5;
           position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%) scale(0);
+          display: table;
+          border: 2px solid @comic-white;
+          border-top: 0;
+          border-left: 0;
+          transform: rotate(45deg) scale(1) translate(-50%, -50%) scale(0);
+          width: 4px;
+          height: 8px;
+          top: 44%;
+          left: 22%;
           transition: transform ease .3s;
         }
       }
@@ -45,27 +47,31 @@
   }
 
   &-focused {
-    .comic-radio-inner {
+    .comic-checkbox-inner {
       box-shadow: 0 0 0 3px @blue-1;
     }
   }
 
   &-checked {
-    .comic-radio-inner {
+    .comic-checkbox-inner {
       border-color: @blue-5;
+      background: @blue-5;
   
       &::after {
-        transform: translate(-50%, -50%) scale(1);
+        transform: rotate(45deg) scale(1) translate(-50%, -50%) scale(1);
       }
     }
   }
 
   &-disabled {
-    .radio-disabled();
-    .comic-radio-inner {
+    .checkbox-disabled();
+    .comic-checkbox-inner {
       border-color: @disable-color;
+      background: @gray-2;
       &::after {
-        background-color: @disable-color;
+        border: 2px solid @gray-7;
+        border-top: 0;
+        border-left: 0;
       }
       &:hover {
         border-color: unset;
@@ -73,8 +79,7 @@
     }
   }
 
-  // group
   &-group {
-    margin-bottom: 5px;
+    margin-bottom: 10px;
   }
 }

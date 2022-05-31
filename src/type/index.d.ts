@@ -9,3 +9,9 @@ interface BaseElementIconProps {
   className?: string;
   onClick?: (e: MouseEventHandler<SVGSVGElement>) => void;
 }
+
+interface Option {
+  label: string;
+  value: string;
+  disabled?: boolean;
+}

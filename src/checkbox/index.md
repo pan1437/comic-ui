@@ -1,29 +1,28 @@
 ---
-title: Radio 单选框
+title: Checkbox 复选框
 nav:
   path: /components
   title: 组件
   order: 2
 group:
   title: Form
-  order: 2
+  order: 3
 ---
 
-# Radio 单选框
+# Checkbox 复选框
 
 
 ## 基础用法
 
 <code src="./demo/basic.tsx" />
 
+
+
 ## 禁用状态
 
 <code src="./demo/disabled.tsx" />
 
-## 单选框组
-
+## 多选框组
 <code src="./demo/group.tsx" />
 
 <API src="./index.tsx" />
-
-<!-- ### Option -->
