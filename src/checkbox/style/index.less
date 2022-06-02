@@ -3,44 +3,44 @@
 .comic-checkbox {
   &-wrapper {
     .flex(inline-flex, null, center);
+    box-sizing: border-box;
+    margin-right: 14px;
+    color: @comic-text;
+    font-size: 14px;
 
     cursor: pointer;
-    font-size: 14px;
-    margin-right: 14px;
-    box-sizing: border-box;
-    color: @comic-text;
 
     .comic-checkbox {
       position: absolute;
       opacity: 0;
 
       &-inner {
-        transition: all 0.5s;
         position: relative;
         top: 0;
         left: 0;
         width: 14px;
         height: 14px;
         margin-right: 8px;
-        border-radius: 2px;
         border: 1px solid @dark-gray-5;
+        border-radius: 2px;
+        transition: all 0.5s;
 
         &:hover {
           border-color: @blue-5;
         }
         &::after {
-          content: '';
           position: absolute;
+          top: 44%;
+          left: 22%;
           display: table;
+          width: 4px;
+          height: 8px;
           border: 2px solid @comic-white;
           border-top: 0;
           border-left: 0;
           transform: rotate(45deg) scale(1) translate(-50%, -50%) scale(0);
-          width: 4px;
-          height: 8px;
-          top: 44%;
-          left: 22%;
-          transition: transform ease .3s;
+          transition: transform ease 0.3s;
+          content: '';
         }
       }
     }
@@ -54,9 +54,9 @@
 
   &-checked {
     .comic-checkbox-inner {
-      border-color: @blue-5;
       background: @blue-5;
-  
+      border-color: @blue-5;
+
       &::after {
         transform: rotate(45deg) scale(1) translate(-50%, -50%) scale(1);
       }
@@ -66,8 +66,8 @@
   &-disabled {
     .checkbox-disabled();
     .comic-checkbox-inner {
-      border-color: @disable-color;
       background: @gray-2;
+      border-color: @disable-color;
       &::after {
         border: 2px solid @gray-7;
         border-top: 0;

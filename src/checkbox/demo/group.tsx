@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { CheckboxGroup, Checkbox } from 'comic-ui';
-import 'comic-ui/es/Checkbox/style'; // 手动按需加载 less
+import 'comic-ui/es/checkbox/style'; // 手动按需加载 less
 
 export default () => {
   const [value, setValue] = useState<(number | string)[]>(['bbo']);
@@ -17,7 +17,11 @@ export default () => {
         <Checkbox value="wwo">船锚屋</Checkbox>
         <Checkbox value="ssww">石像屋</Checkbox>
       </CheckboxGroup>
-      <CheckboxGroup value={optionValue} onChange={(val: (number | string)[]) => setOptionValue(val)} options={options} />
+      <CheckboxGroup
+        value={optionValue}
+        onChange={(val: (number | string)[]) => setOptionValue(val)}
+        options={options}
+      />
     </>
   );
 };

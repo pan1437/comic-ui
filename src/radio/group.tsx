@@ -6,7 +6,6 @@ import { getClassPrefix } from '../util/common';
 import { Radio } from 'comic-ui';
 
 export interface RadioGroupProps extends BaseElementProps {
-  
   children?: ReactNode;
   /**
    * @description   用于设置当前选中的值
@@ -18,7 +17,7 @@ export interface RadioGroupProps extends BaseElementProps {
    * @description   指定选项
    * @default            []
    */
-   options?: Option [];
+  options?: Option[];
 
   /**
    * @description   选项变化时的回调函数
@@ -26,7 +25,6 @@ export interface RadioGroupProps extends BaseElementProps {
    */
   onChange?: (value: any) => void;
 }
-
 
 const classPrefix = getClassPrefix('radio');
 
@@ -44,9 +42,13 @@ const RadioGroup: React.FC<RadioGroupProps> = (props) => {
       }}
     >
       <div className={`${classPrefix}-group`}>
-        { options.length ? options.map(item => (
-          <Radio key={item.value} value={item.value} >{ item.label }</Radio>
-        )) : props.children }
+        {options.length
+          ? options.map((item) => (
+              <Radio key={item.value} value={item.value}>
+                {item.label}
+              </Radio>
+            ))
+          : props.children}
       </div>
     </RadioGroupContext.Provider>
   );
@@ -54,7 +56,7 @@ const RadioGroup: React.FC<RadioGroupProps> = (props) => {
 
 RadioGroup.propTypes = {
   value: t.oneOfType([string, number]),
-  options: t.array
+  options: t.array,
 };
 
 export default RadioGroup;

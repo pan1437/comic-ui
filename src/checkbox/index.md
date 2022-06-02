@@ -11,18 +11,16 @@ group:
 
 # Checkbox 复选框
 
-
 ## 基础用法
 
 <code src="./demo/basic.tsx" />
-
-
 
 ## 禁用状态
 
 <code src="./demo/disabled.tsx" />
 
 ## 多选框组
+
 <code src="./demo/group.tsx" />
 
 <API src="./index.tsx" />

@@ -12,10 +12,9 @@ export interface RadioProps extends BaseElementProps {
    */
   checked?: boolean;
 
-
   /**
    * @description      选中的值
-   * @default          
+   * @default
    */
   value?: string | number;
 
@@ -24,7 +23,6 @@ export interface RadioProps extends BaseElementProps {
    * @default
    */
   disabled?: boolean;
-
 
   /**
    * @description       slot
@@ -47,8 +45,7 @@ const Checkbox: React.FC<RadioProps> = (props) => {
     setCurrentChecked(() => {
       return groupValue !== undefined ? groupValue.includes(value) : checked;
     });
-  }, [])
-
+  }, []);
 
   const classes = () =>
     classNames(
@@ -64,11 +61,10 @@ const Checkbox: React.FC<RadioProps> = (props) => {
   const onChangeVal = (e: ChangeEvent<HTMLInputElement>) => {
     const currentVal = e.target.value;
     const valueArr = groupValue;
-    if(e.target.checked) {
-      !valueArr.includes(currentVal) && valueArr.push(e.target.value)
-    }
-    else {
-      const nowIndex = valueArr.findIndex(item => item === currentVal);
+    if (e.target.checked) {
+      !valueArr.includes(currentVal) && valueArr.push(e.target.value);
+    } else {
+      const nowIndex = valueArr.findIndex((item) => item === currentVal);
       nowIndex !== -1 && valueArr.splice(nowIndex, 1);
     }
     groupChange?.(valueArr);
@@ -105,7 +101,7 @@ const Checkbox: React.FC<RadioProps> = (props) => {
 Checkbox.propTypes = {
   disabled: t.bool,
   checked: t.bool,
-  value: t.any
+  value: t.any,
 };
 
 export default Checkbox;

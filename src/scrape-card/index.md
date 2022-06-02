@@ -15,7 +15,6 @@ group:
 
 <code src="./demo/basic.tsx" />
 
-
 ## 圆角
 
 <code src="./demo/round.tsx" />
@@ -29,6 +28,5 @@ group:
 ###### comic UI 可以通过 color 属性重新制定画布颜色哦
 
 <code src="./demo/color.tsx" />
-
 
 <API src="./index.tsx">

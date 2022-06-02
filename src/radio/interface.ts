@@ -15,4 +15,3 @@ export interface RadioBaseElementProps extends BaseElementProps {
    */
   onBlur?: (e: FocusEvent<HTMLInputElement, Element>) => void;
 }
-
