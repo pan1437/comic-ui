@@ -1,0 +1,1 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([[11],{OYKO:function(e,a,t){"use strict";t.r(a);var n=t("q1tI"),c=t.n(n),l=t("/7QA");t("a8f+"),a["default"]=()=>c.a.createElement(c.a.Fragment,null,c.a.createElement(l["g"],null),c.a.createElement(l["g"],{type:"avocado",width:50,height:60}))},"a8f+":function(e,a,t){}}]);
