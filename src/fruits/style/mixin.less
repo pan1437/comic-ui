@@ -1,0 +1,15 @@
+.fruits-color(@color; @radius; @shadow) {
+  background: @color;
+  border-radius: @radius;
+  box-shadow: @shadow;
+}
+
+// 伪类
+.fruits-position(@height, @width, @top, @left) {
+  content: '';
+  position: absolute;
+  top: @top;
+  left: @left;
+  height: @height;
+  width: @width;
+}

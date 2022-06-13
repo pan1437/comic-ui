@@ -8,3 +8,4 @@ export { ScrapeCard } from './scrape-card';
 export { Input } from './input';
 export { Radio, RadioGroup } from './radio';
 export { Checkbox, CheckboxGroup } from './checkbox';
+export { Fruits } from './fruits';

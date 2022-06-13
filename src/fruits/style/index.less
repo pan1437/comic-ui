@@ -1,0 +1,49 @@
+@import './mixin.less';
+
+.comic-fruits {
+  position: relative;
+  &-apple {
+    @radius: 27px 27px 35px 35px;
+    @shadow: -3px 2px 0 0 @red-8;
+    .fruits-color(@red-6, @radius, @shadow);
+
+    &::before {
+      .fruits-position(0, 0, -5px, 56%);
+      border: 10px solid @lime-7;
+      border-radius: 50% 0 50% 0;
+      border-bottom-color: @lime-8;
+      border-right-color: @lime-8;
+      transform: rotate(25deg);
+    }
+
+    &::after {
+      .fruits-position(18px, 3px, -8px, 50%);
+      background: @dark-yellow-1;
+      transform: translateX(-50%);
+      border-radius: 50%;
+      transform: rotate(8deg);
+    }
+  }
+
+  &-avocado {
+    @radius: 70% 70% 55% 55%;
+    border: 1px solid @dark-green-3;
+    .fruits-color(@dark-lime-4, @radius, none);
+
+    &-inner {
+      width: 70%;
+      height: 70%;
+      margin: 50% auto;
+      transform: translateY(-30%);
+      .fruits-color(@dark-lime-6, @radius, none);
+
+      &::after {
+        background: @dark-gold-1;
+        border-radius: @radius;
+        .fruits-position(40%, 50%, none, 50%);
+        bottom: 6px;
+        transform: translateX(-50%);
+      }
+    }
+  }
+}
