@@ -13,3 +13,14 @@
     flex-wrap: @wrap;
   }
 }
+
+.font(@size, @line-height: null) {
+  font-size: @size;
+  & when not(@line-height = null) {
+    line-height: @line-height;
+  }
+}
+
+.margin(@position, @num) {
+  margin-@{position}: @num;
+}

@@ -12,5 +12,7 @@
    <>
      <Fruits />
      <Fruits type="avocado" width={50} height={60} />
+     <Fruits type="lemon" width={55} height={55} />
+     <Fruits type="pear" width={55} height={55} />
    </>
  );

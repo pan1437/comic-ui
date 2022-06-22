@@ -1,0 +1,48 @@
+@import './mixin.less';
+
+.comic-alert {
+  // .flex(flex, space-between, center);
+  padding: 10px;
+
+  &:not(:first-child) {
+    margin-top: 20px;
+  }
+  &-success {
+    .alert-color(@dark-green-10, @dark-green-9);
+  }
+  &-info {
+    .alert-color(@blue-1, @blue-2);
+  }
+
+  &-warning {
+    .alert-color(@dark-yellow-10, @dark-yellow-8);
+  }
+
+  &-error {
+    .alert-color(@dark-red-10, @dark-red-9);
+  }
+
+  &-round {
+    border-radius: 8px;
+  }
+
+  .icon {
+    color: @gray-5;
+    width: 18px;
+    height: 18px;
+  }
+
+  &-message {
+    color: @gray-9;
+    .font(14px);
+  }
+
+  &-message-title {
+    .font(16px);
+  }
+
+  &-description {
+    .font(14px);
+    // .margin(top, 10px);
+  }
+}

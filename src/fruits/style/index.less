@@ -9,6 +9,7 @@
 
     &::before {
       .fruits-position(0, 0, -5px, 56%);
+
       border: 10px solid @lime-7;
       border-radius: 50% 0 50% 0;
       border-bottom-color: @lime-8;
@@ -18,15 +19,16 @@
 
     &::after {
       .fruits-position(18px, 3px, -8px, 50%);
+
       background: @dark-yellow-1;
       transform: translateX(-50%);
       border-radius: 50%;
-      transform: rotate(8deg);
     }
   }
 
   &-avocado {
     @radius: 70% 70% 55% 55%;
+
     border: 1px solid @dark-green-3;
     .fruits-color(@dark-lime-4, @radius, none);
 
@@ -41,9 +43,35 @@
         background: @dark-gold-1;
         border-radius: @radius;
         .fruits-position(40%, 50%, none, 50%);
+
         bottom: 6px;
         transform: translateX(-50%);
       }
     }
   }
+
+  &-lemon {
+    @radius: 50% 15%;
+    @shadow: 2px 2px @dark-yellow-4;
+    .fruits-color(@dark-yellow-5, @radius, @shadow);
+
+    transform: rotate(55deg);
+  }
+
+  &-pear {
+    @radius: 50% 15% 50% 50%;
+    @shadow: 2px 2px #c3b11f;
+    .fruits-color(#d7c322, @radius, @shadow);
+
+    transform: rotate(-45deg);
+
+    &::after {
+      .fruits-position(12px, 2px, -3px, 52px);
+
+      background-color: @dark-orange-2;
+      z-index: 2;
+      transform: rotate(45deg);
+    }
+  }
+
 }

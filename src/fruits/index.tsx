@@ -1,4 +1,4 @@
-import React, { createRef, useEffect } from 'react';
+import React from 'react';
 import t from 'prop-types';
 import { getClassPrefix } from '../util/common';
 import classNames from 'classnames';
@@ -9,7 +9,7 @@ export interface FruitsProps extends BaseElementProps {
    * @description       类型
    * @default            apple
    */
-  type?: string;
+  type?: 'pear'| 'avocado'| 'lemon'| 'apple';
 
 
   /**
@@ -33,8 +33,7 @@ export const Fruits: React.FC<FruitsProps> = (props) => {
     style,
     width = 65,
     height = 55,
-    type = 'apple',
-    ...rest
+    type = 'apple'
   } = props;
   const classes = () =>
     classNames(classPrefix, className, {
@@ -50,13 +49,13 @@ export const Fruits: React.FC<FruitsProps> = (props) => {
 
   return (
     <div className={classes()} style={{ ...FruitsStyle, ...style }} >
-     {['avocado'].includes(type) && <div className={`${classPrefix}-${type}-inner`}></div>}
+     {['avocado'].includes(type) && <div className={`${classPrefix}-${type}-inner`} />}
     </div>
   );
 };
 
 Fruits.propTypes = {
-  type: t.string,
+  type: t.oneOf(['pear', 'avocado', 'lemon', 'apple']),
   width: t.number,
   height: t.number
 };
