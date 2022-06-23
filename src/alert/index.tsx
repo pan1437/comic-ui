@@ -5,58 +5,50 @@ import classNames from 'classnames';
 import { Icon } from '../icons';
 
 export interface AlertProps extends BaseElementProps {
-
   /**
    * @description       类型
-   * @default            apple
+   * @default            success
    */
-  type?: 'success'| 'warning' | 'info' | 'error';
+  type?: 'success' | 'warning' | 'info' | 'error';
 
   /**
    * @description       提示内容
-   * @default           
+   * @default
    */
   message?: React.ReactNode;
 
   /**
    * @description       描述信息
-   * @default           
+   * @default
    */
-   description?: React.ReactNode;
-
+  description?: React.ReactNode;
 
   /**
    * @description       是否显示关闭按钮
    * @default            false
    */
-   closable?: boolean;
+  closable?: boolean;
 
 
   /**
-   * @description       关闭时触发的回调函数
+   * @description       是否需要滑动文字
    * @default            false
    */
-  onClose?: (e: MouseEvent) => void
+  slideable?: boolean;
 
-
-
+  /**
+   * @description       关闭时触发的回调函数
+   * @default            
+   */
+  onClose?: (e: MouseEvent) => void;
 }
 
 const classPrefix = getClassPrefix('alert');
 
 export const Alert: React.FC<AlertProps> = (props) => {
-
   const [currentStatus, setCurrentStatus] = useState(true);
 
-  const {
-    className,
-    style,
-    type = 'success',
-    message,
-    description,
-    closable,
-    onClose
-  } = props;
+  const { className, style, type = 'success', message, description, closable, onClose, slideable } = props;
 
   const classes = () =>
     classNames(classPrefix, className, {
@@ -64,30 +56,26 @@ export const Alert: React.FC<AlertProps> = (props) => {
     });
 
   const messageClasses = () =>
-  classNames({
-    [`${classPrefix}-message`]: true,
-    [`${classPrefix}-message-title`]: description,
-  });
+    classNames({
+      [`${classPrefix}-message`]: true,
+      [`${classPrefix}-message-title`]: description,
+      [`${classPrefix}-slide`]: slideable && !description,
+    });
 
   const onHandle = (e: MouseEvent) => {
     setCurrentStatus(false);
     onClose?.(e);
-  }
-
-
-
+  };
 
   return (
     <>
-      { currentStatus ? <div className={classes()} style={style} >
-        { message ? <div className={messageClasses()} >{message}</div> : null }
-        {/* { closable ? <Icon
-          type="clear"
-          className="icon"
-          onClick={onHandle}
-        /> : null} */}
-        { description ? <div className={`${classPrefix}-description`}>{description}</div> : null}
-      </div> : null }
+      {currentStatus ? (
+        <div className={classes()} style={style}>
+          {message ? <div className={messageClasses()}>{message}</div> : null}
+          {closable ? <Icon type="clear" className="icon" onClick={onHandle} /> : null}
+          {description ? <div className={`${classPrefix}-description`}>{description}</div> : null}
+        </div>
+      ) : null}
     </>
   );
 };
@@ -95,4 +83,5 @@ export const Alert: React.FC<AlertProps> = (props) => {
 Alert.propTypes = {
   type: t.oneOf(['success', 'warning', 'info', 'error']),
   closable: t.bool,
+  slideable: t.bool,
 };

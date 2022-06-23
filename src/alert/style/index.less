@@ -1,8 +1,9 @@
 @import './mixin.less';
 
 .comic-alert {
-  // .flex(flex, space-between, center);
+  position: relative;
   padding: 10px;
+  overflow: hidden;
 
   &:not(:first-child) {
     margin-top: 20px;
@@ -27,9 +28,12 @@
   }
 
   .icon {
-    color: @gray-5;
     width: 18px;
     height: 18px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: @gray-5;
   }
 
   &-message {
@@ -43,6 +47,21 @@
 
   &-description {
     .font(14px);
-    // .margin(top, 10px);
+    .margin(top, 10px);
+  }
+
+  &-slide {
+    animation: 30s wordsLoop linear infinite normal;
+  }
+
+  @keyframes wordsLoop {
+    0% {
+        transform: translateX(0);
+        -webkit-transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
+        -webkit-transform: translateX(-100%);
+    }
   }
 }

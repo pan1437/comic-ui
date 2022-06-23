@@ -4,13 +4,11 @@ import { getClassPrefix } from '../util/common';
 import classNames from 'classnames';
 
 export interface FruitsProps extends BaseElementProps {
-
   /**
    * @description       类型
    * @default            apple
    */
-  type?: 'pear'| 'avocado'| 'lemon'| 'apple';
-
+  type?: 'pear' | 'avocado' | 'lemon' | 'apple';
 
   /**
    * @description       宽度
@@ -28,28 +26,20 @@ export interface FruitsProps extends BaseElementProps {
 const classPrefix = getClassPrefix('fruits');
 
 export const Fruits: React.FC<FruitsProps> = (props) => {
-  const {
-    className,
-    style,
-    width = 65,
-    height = 55,
-    type = 'apple'
-  } = props;
+  const { className, style, width = 65, height = 55, type = 'apple' } = props;
   const classes = () =>
     classNames(classPrefix, className, {
       [`${classPrefix}-${type}`]: type,
     });
 
-
-
   const FruitsStyle: React.CSSProperties = {
     width: width,
-    height: height
+    height: height,
   };
 
   return (
-    <div className={classes()} style={{ ...FruitsStyle, ...style }} >
-     {['avocado'].includes(type) && <div className={`${classPrefix}-${type}-inner`} />}
+    <div className={classes()} style={{ ...FruitsStyle, ...style }}>
+      {['avocado'].includes(type) && <div className={`${classPrefix}-${type}-inner`} />}
     </div>
   );
 };
@@ -57,5 +47,5 @@ export const Fruits: React.FC<FruitsProps> = (props) => {
 Fruits.propTypes = {
   type: t.oneOf(['pear', 'avocado', 'lemon', 'apple']),
   width: t.number,
-  height: t.number
+  height: t.number,
 };

@@ -11,9 +11,9 @@
       .fruits-position(0, 0, -5px, 56%);
 
       border: 10px solid @lime-7;
-      border-radius: 50% 0 50% 0;
-      border-bottom-color: @lime-8;
       border-right-color: @lime-8;
+      border-bottom-color: @lime-8;
+      border-radius: 50% 0 50% 0;
       transform: rotate(25deg);
     }
 
@@ -21,8 +21,8 @@
       .fruits-position(18px, 3px, -8px, 50%);
 
       background: @dark-yellow-1;
-      transform: translateX(-50%);
       border-radius: 50%;
+      transform: translateX(-50%);
     }
   }
 
@@ -40,12 +40,11 @@
       .fruits-color(@dark-lime-6, @radius, none);
 
       &::after {
+        bottom: 6px;
         background: @dark-gold-1;
         border-radius: @radius;
-        .fruits-position(40%, 50%, none, 50%);
-
-        bottom: 6px;
         transform: translateX(-50%);
+        .fruits-position(40%, 50%, none, 50%);
       }
     }
   }
@@ -67,11 +66,10 @@
 
     &::after {
       .fruits-position(12px, 2px, -3px, 52px);
+      z-index: 2;
 
       background-color: @dark-orange-2;
-      z-index: 2;
       transform: rotate(45deg);
     }
   }
-
 }
