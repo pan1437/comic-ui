@@ -1,4 +1,7 @@
+import type { CSSProperties } from 'react';
 import React, { useState } from 'react';
+import type { TransitionStatus } from 'react-transition-group';
+import { Transition } from 'react-transition-group';
 import t from 'prop-types';
 import { getClassPrefix } from '../util/common';
 import classNames from 'classnames';
@@ -29,7 +32,6 @@ export interface AlertProps extends BaseElementProps {
    */
   closable?: boolean;
 
-
   /**
    * @description       是否需要滑动文字
    * @default            false
@@ -38,21 +40,46 @@ export interface AlertProps extends BaseElementProps {
 
   /**
    * @description       关闭时触发的回调函数
-   * @default            
+   * @default
    */
   onClose?: (e: MouseEvent) => void;
+
+  /**
+   * @description       关闭延时
+   * @default
+   */
+  duration?: number;
 }
+
+const transitionStyles: Record<TransitionStatus, CSSProperties> = {
+  entering: { opacity: 1 },
+  entered: { opacity: 1 },
+  exiting: { opacity: 0 },
+  exited: { opacity: 0 },
+  unmounted: {},
+};
 
 const classPrefix = getClassPrefix('alert');
 
 export const Alert: React.FC<AlertProps> = (props) => {
   const [currentStatus, setCurrentStatus] = useState(true);
 
-  const { className, style, type = 'success', message, description, closable, onClose, slideable } = props;
+  const {
+    className,
+    style,
+    type = 'success',
+    message,
+    description,
+    closable,
+    onClose,
+    slideable,
+    duration = 300,
+  } = props;
 
   const classes = () =>
     classNames(classPrefix, className, {
       [`${classPrefix}-${type}`]: type,
+      [`${classPrefix}-nowrap`]: slideable,
     });
 
   const messageClasses = () =>
@@ -68,15 +95,28 @@ export const Alert: React.FC<AlertProps> = (props) => {
   };
 
   return (
-    <>
-      {currentStatus ? (
-        <div className={classes()} style={style}>
-          {message ? <div className={messageClasses()}>{message}</div> : null}
-          {closable ? <Icon type="clear" className="icon" onClick={onHandle} /> : null}
-          {description ? <div className={`${classPrefix}-description`}>{description}</div> : null}
-        </div>
-      ) : null}
-    </>
+    <Transition in={currentStatus} timeout={duration}>
+      {(state) =>
+        state !== 'exited' ? (
+          <div
+            className={classes()}
+            style={{
+              ...style,
+              ...transitionStyles[state],
+            }}
+          >
+            {message ? (
+              <>
+                <div className={messageClasses()}>{message}</div>
+                {slideable && <div className={messageClasses()}>{message}</div>}
+              </>
+            ) : null}
+            {closable ? <Icon type="clear" className="icon" onClick={onHandle} /> : null}
+            {description ? <div className={`${classPrefix}-description`}>{description}</div> : null}
+          </div>
+        ) : null
+      }
+    </Transition>
   );
 };
 

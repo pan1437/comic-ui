@@ -71,6 +71,8 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.17.9",
-    "prop-types": "^15.8.1"
+    "@types/react-transition-group": "^4.4.5",
+    "prop-types": "^15.8.1",
+    "react-transition-group": "^4.4.2"
   }
 }

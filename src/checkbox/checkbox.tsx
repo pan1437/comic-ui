@@ -5,7 +5,7 @@ import { getClassPrefix } from '../util/common';
 import { CheckboxGroupContext } from './CheckboxGroupContext';
 import classNames from 'classnames';
 
-export interface RadioProps extends BaseElementProps {
+export interface CheckboxProps extends BaseElementProps {
   /**
    * @description      选择状态
    * @default          false
@@ -33,7 +33,7 @@ export interface RadioProps extends BaseElementProps {
 
 const classPrefix = getClassPrefix('checkbox');
 
-const Checkbox: React.FC<RadioProps> = (props) => {
+const Checkbox: React.FC<CheckboxProps> = (props) => {
   const { className, disabled, children, checked = false, value, ...rest } = props;
 
   const [currentChecked, setCurrentChecked] = useState(checked);
@@ -43,8 +43,9 @@ const Checkbox: React.FC<RadioProps> = (props) => {
 
   useEffect(() => {
     setCurrentChecked(() => {
-      return groupValue !== undefined ? groupValue.includes(value) : checked;
+      return groupValue !== undefined ? groupValue.includes(value!) : checked;
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const classes = () =>
