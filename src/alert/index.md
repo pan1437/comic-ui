@@ -6,7 +6,7 @@ nav:
   order: 2
 group:
   title: Feedback
-  order: 3
+  order: 1
 ---
 
 # Alert 警告提示

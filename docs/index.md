@@ -14,7 +14,7 @@ features:
     title: 小众主题
     desc: 轻量组件库 小众主题 贴近暖系风格开发
   - icon: https://gw.alipayobjects.com/zos/bmw-prod/d1ee0c6f-5aed-4a45-a507-339a4bfe076c/k7bjsocq_w144_h144.png
-    title: 
-    desc: Balabala
+    title: React
+    desc: 基于React 最新版本的组件库
 footer: 仓库地址(https://github.com/pan1437/comic-ui) 欢迎给个 star ✨
 ---
