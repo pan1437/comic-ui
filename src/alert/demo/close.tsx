@@ -14,8 +14,28 @@ export default () => {
   return (
     <>
       <Alert
-        message="This is a message you can choose to close the current message"
+        message="This is a success message you can choose to close the current message"
         closable
+        onClose={onClose}
+      />
+      <Alert
+        message="This is a error message you can choose to close the current message"
+        closable
+        type="error"
+        onClose={onClose}
+      />
+
+      <Alert
+        message="This is a info message you can choose to close the current message"
+        closable
+        type="info"
+        onClose={onClose}
+      />
+
+      <Alert
+        message="This is a warning message you can choose to close the current message"
+        closable
+        type="warning"
         onClose={onClose}
       />
     </>
