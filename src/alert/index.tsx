@@ -49,7 +49,6 @@ export interface AlertProps extends BaseElementProps {
    * @default
    */
   onClose?: (e: MouseEvent) => void;
-
 }
 
 const transitionStyles: Record<TransitionStatus, CSSProperties> = {
@@ -90,7 +89,6 @@ export const Alert: React.FC<AlertProps> = (props) => {
       [`${classPrefix}-slide`]: slideable && !description,
     });
 
-
   // slide-time
   const messageSlideStyle: React.CSSProperties = {};
   if (slideable && !description) {
@@ -104,26 +102,36 @@ export const Alert: React.FC<AlertProps> = (props) => {
 
   return (
     <>
-      {currentStatus ? <Transition in={currentStatus} timeout={300}>
-        {(state) =>
-          <div
-          className={classes()}
-          style={{
-            ...style,
-            ...transitionStyles[state],
-          }}
-        >
-          {message ? (
-            <>
-              <div className={messageClasses()} style={messageSlideStyle}>{message}</div>
-              {slideable && <div className={messageClasses()} style={messageSlideStyle}>{message}</div>}
-            </>
-          ) : null}
-          {closable ? <Icon type="clear" className="icon" onClick={onHandle} /> : null}
-          {description ? <div className={`${classPrefix}-description`}>{description}</div> : null}
-        </div>
-        }
-      </Transition> : null}
+      {currentStatus ? (
+        <Transition in={currentStatus} timeout={300}>
+          {(state) => (
+            <div
+              className={classes()}
+              style={{
+                ...style,
+                ...transitionStyles[state],
+              }}
+            >
+              {message ? (
+                <>
+                  <div className={messageClasses()} style={messageSlideStyle}>
+                    {message}
+                  </div>
+                  {slideable && (
+                    <div className={messageClasses()} style={messageSlideStyle}>
+                      {message}
+                    </div>
+                  )}
+                </>
+              ) : null}
+              {closable ? <Icon type="clear" className="icon" onClick={onHandle} /> : null}
+              {description ? (
+                <div className={`${classPrefix}-description`}>{description}</div>
+              ) : null}
+            </div>
+          )}
+        </Transition>
+      ) : null}
     </>
   );
 };
