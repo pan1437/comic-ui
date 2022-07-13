@@ -4,8 +4,15 @@
   position: relative;
   padding: 10px;
   overflow: hidden;
-  transition: all 300ms ease-in-out;
   opacity: 0;
+  transition: all 300ms ease-in-out;
+  .flex(flex, null, center, null);
+
+  &-content {
+    flex: 1;
+    color: @gray-9;
+    .font(14px);
+  }
 
   &:not(:first-child) {
     margin-top: 20px;
@@ -33,21 +40,21 @@
     white-space: nowrap;
   }
 
-  .icon {
+  .clear-icon {
     width: 18px;
     height: 18px;
-    position: absolute;
-    top: 10px;
-    right: 10px;
+    margin-left: 10px;
     color: @gray-5;
+    cursor: pointer;
   }
 
-  &-message {
-    color: @gray-9;
-    .font(14px);
+  .prefix-icon {
+    width: 18px;
+    height: 18px;
+    margin-right: 10px;
   }
 
-  &-message-title {
+  &-title {
     .font(16px);
   }
 

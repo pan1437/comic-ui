@@ -21,6 +21,18 @@ export interface AlertProps extends BaseElementProps {
   message?: React.ReactNode;
 
   /**
+   * @description       是否显示图标
+   * @default               false
+   */
+  showIcon?: boolean;
+
+  /**
+   * @description       自定义图标
+   * @default
+   */
+  icon?: React.ReactNode;
+
+  /**
    * @description       描述信息
    * @default
    */
@@ -49,7 +61,6 @@ export interface AlertProps extends BaseElementProps {
    * @default
    */
   onClose?: (e: MouseEvent) => void;
-
 }
 
 const transitionStyles: Record<TransitionStatus, CSSProperties> = {
@@ -74,7 +85,9 @@ export const Alert: React.FC<AlertProps> = (props) => {
     closable,
     onClose,
     slideable,
+    showIcon = false,
     slideTime = 30,
+    icon,
   } = props;
 
   const classes = () =>
@@ -85,11 +98,9 @@ export const Alert: React.FC<AlertProps> = (props) => {
 
   const messageClasses = () =>
     classNames({
-      [`${classPrefix}-message`]: true,
-      [`${classPrefix}-message-title`]: description,
+      [`${classPrefix}-title`]: description,
       [`${classPrefix}-slide`]: slideable && !description,
     });
-
 
   // slide-time
   const messageSlideStyle: React.CSSProperties = {};
@@ -102,28 +113,58 @@ export const Alert: React.FC<AlertProps> = (props) => {
     onClose?.(e);
   };
 
+  const colorObj = {
+    success: '#1db440',
+    warning: '#fae13c',
+    info: '#57a9fb',
+    error: '#f54e4e',
+  };
+
+  const preFixIcon = () =>
+    showIcon && ['success', 'warning', 'info', 'error'].includes(type)
+      ? icon || <Icon type={type} className="prefix-icon" color={colorObj[type]} />
+      : null;
+
+  const content = () => (
+    <div className={`${classPrefix}-content`}>
+      {message ? (
+        <>
+          <div className={messageClasses()} style={messageSlideStyle}>
+            {message}
+          </div>
+          {slideable && (
+            <div className={messageClasses()} style={messageSlideStyle}>
+              {message}
+            </div>
+          )}
+        </>
+      ) : null}
+      {description ? <div className={`${classPrefix}-description`}>{description}</div> : null}
+    </div>
+  );
+
+  const suffixIcon = () =>
+    closable ? <Icon type="noBorderClear" className="clear-icon" onClick={onHandle} /> : null;
+
   return (
     <>
-      {currentStatus ? <Transition in={currentStatus} timeout={300}>
-        {(state) =>
-          <div
-          className={classes()}
-          style={{
-            ...style,
-            ...transitionStyles[state],
-          }}
-        >
-          {message ? (
-            <>
-              <div className={messageClasses()} style={messageSlideStyle}>{message}</div>
-              {slideable && <div className={messageClasses()} style={messageSlideStyle}>{message}</div>}
-            </>
-          ) : null}
-          {closable ? <Icon type="clear" className="icon" onClick={onHandle} /> : null}
-          {description ? <div className={`${classPrefix}-description`}>{description}</div> : null}
-        </div>
-        }
-      </Transition> : null}
+      {currentStatus ? (
+        <Transition in={currentStatus} timeout={300}>
+          {(state) => (
+            <div
+              className={classes()}
+              style={{
+                ...style,
+                ...transitionStyles[state],
+              }}
+            >
+              {preFixIcon()}
+              {content()}
+              {suffixIcon()}
+            </div>
+          )}
+        </Transition>
+      ) : null}
     </>
   );
 };
@@ -133,4 +174,5 @@ Alert.propTypes = {
   closable: t.bool,
   slideable: t.bool,
   slideTime: t.number,
+  showIcon: t.bool,
 };
