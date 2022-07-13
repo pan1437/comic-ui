@@ -73,6 +73,13 @@ const transitionStyles: Record<TransitionStatus, CSSProperties> = {
 
 const classPrefix = getClassPrefix('alert');
 
+const colorObj = {
+  success: '#1db440',
+  warning: '#fae13c',
+  info: '#57a9fb',
+  error: '#f54e4e',
+};
+
 export const Alert: React.FC<AlertProps> = (props) => {
   const [currentStatus, setCurrentStatus] = useState(true);
 
@@ -113,16 +120,9 @@ export const Alert: React.FC<AlertProps> = (props) => {
     onClose?.(e);
   };
 
-  const colorObj = {
-    success: '#1db440',
-    warning: '#fae13c',
-    info: '#57a9fb',
-    error: '#f54e4e',
-  };
-
   const preFixIcon = () =>
     showIcon && ['success', 'warning', 'info', 'error'].includes(type)
-      ? icon || <Icon type={type} className="prefix-icon" color={colorObj[type]} />
+      ? icon || <Icon type={type} className="prefix-icon" color={colorObj[type]} width={ description ? 22 : 18} height={ description ? 22 : 18 } />
       : null;
 
   const content = () => (

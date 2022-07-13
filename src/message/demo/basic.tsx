@@ -9,6 +9,9 @@ import 'comic-ui/es/message/style'; // 手动按需加载 less
 
 export default () => (
   <>
-    <Message />
+    {/* <Message type="success" /> */}
+    {/* <Message type="warning" /> */}
+    <Message type="info" />
+    {/* <Message type="error" /> */}
   </>
 );
