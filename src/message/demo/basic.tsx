@@ -7,12 +7,21 @@ import { Button, message } from 'comic-ui';
 import 'comic-ui/es/button/style'; // 手动按需加载 less
 import 'comic-ui/es/message/style'; // 手动按需加载 less
 
-const info = () => {
-  message.info('This is a info message');
+const call = () => {
+  const type: ['success', 'info', 'error', 'warning'] = ['success', 'info', 'error', 'warning'];
+  // message.info({
+  //   content: 'This is a info message'
+  // });
+  const callType = type[Math.floor(Math.random() * 4)];
+  message[callType]({
+    content: `This is a ${callType} message`,
+  });
 };
 
 export default () => (
   <>
-    <Button type="primary" onClick={info}>Display normal message</Button>
+    <Button type="primary" onClick={call}>
+      Display normal message
+    </Button>
   </>
 );

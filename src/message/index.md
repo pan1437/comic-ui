@@ -16,3 +16,6 @@ group:
 ## 基础用法
 
 <code src="./demo/basic.tsx" />
+
+<API src="./index.ts" />
+
