@@ -18,14 +18,25 @@ export interface MessageProps extends BaseElementProps {
   type?: 'success' | 'warning' | 'info' | 'error';
 
   /**
-   * @description       类型
-   * @default            success
+   * @description       内容
+   * @default            
    */
   content?: React.ReactNode;
 
+   /**
+   * @description        延时关闭事件（单位为毫秒）
+   * @default             3000
+   */
   duration?: number;
 
-  exitedCallback: () => void;
+
+  exitedCallback?: () => void;
+
+  /**
+   * @description       message关闭回调
+   * @default            
+   */
+   onClose?: () => void;
 }
 
 const classPrefix = getClassPrefix('message');
@@ -46,15 +57,15 @@ const transitionStyles: Record<TransitionStatus, CSSProperties> = {
 };
 
 export const Message: React.FC<MessageProps> = (props) => {
-  const { className, type = 'success', content } = props;
+  const { className, type = 'success', content, duration = 3000 } = props;
 
   const [currentStatus, setCurrentStatus] = useState(false);
 
   useEffect(() => {
     setCurrentStatus(true);
-    const timer = setTimeout(setCurrentStatus.bind(null, false), props.duration || 3000);
+    const timer = setTimeout(setCurrentStatus.bind(null, false), duration);
     return () => clearTimeout(timer);
-  }, [props.duration]);
+  }, [duration]);
 
   const exited = () => {
     props.exitedCallback?.();

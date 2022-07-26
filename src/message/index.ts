@@ -7,8 +7,10 @@ const messageWrapper = 'comic-message-wrapper';
 type MessageFCOptions = {
   type: 'success' | 'warning' | 'info' | 'error';
   content: React.ReactNode;
+  duration?: number,
+  onClose?: () => void;
 };
-export function message({ type, content }: MessageFCOptions) {
+export function message({ type, content, duration, onClose }: MessageFCOptions) {
   // 全局message容器
   if (!document.querySelector(`.${messageWrapper}`)) {
     // 不存在需要创建
@@ -22,9 +24,11 @@ export function message({ type, content }: MessageFCOptions) {
   const component = React.createElement(Message, {
     type,
     content,
+    duration: duration || 3000,
     exitedCallback: () => {
       ReactDOM.unmountComponentAtNode(container);
       container.remove();
+      onClose?.();
     },
   });
   wrapper!.appendChild(container);

@@ -17,5 +17,17 @@ group:
 
 <code src="./demo/basic.tsx" />
 
-<API src="./index.ts" />
+
+## 提示类型
+
+<code src="./demo/type.tsx" />
+
+## 延时
+
+<code src="./demo/duration.tsx" />
+
+## 消失回调
+
+<code src="./demo/callback.tsx" />
+<API src="./message.tsx" />
 
