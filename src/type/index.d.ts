@@ -7,6 +7,7 @@ interface BaseElementIconProps {
   width?: number;
   height?: number;
   className?: string;
+  color?: string;
   onClick?: (e: MouseEventHandler<SVGSVGElement>) => void;
 }
 

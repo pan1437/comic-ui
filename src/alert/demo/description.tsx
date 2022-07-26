@@ -9,7 +9,7 @@ import 'comic-ui/es/alert/style'; // 手动按需加载 less
 
 export default () => (
   <>
-    <Alert message="神无" description="神乐化作风，得到了自由，而我，一无所有" closable />
+    <Alert message="神无" description="神乐化作风，得到了自由，而我，一无所有" closable/>
     <Alert
       message="想象力"
       type="info"

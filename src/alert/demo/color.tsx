@@ -1,6 +1,6 @@
 /**
  * title: 四种样式
- * desc: 颜色颜色type 分为四种  success、info、warning、error
+ * desc: 样式颜色type 分为四种  success、info、warning、error
  */
 
 import React from 'react';

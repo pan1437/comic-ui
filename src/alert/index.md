@@ -21,6 +21,10 @@ group:
 
 <code src="./demo/color.tsx" />
 
+## 图标
+
+<code src="./demo/icon.tsx" />
+
 ## 关闭提示
 
 <code src="./demo/close.tsx" />

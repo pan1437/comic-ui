@@ -10,3 +10,4 @@ export { Radio, RadioGroup } from './radio';
 export { Checkbox, CheckboxGroup } from './checkbox';
 export { Fruits } from './fruits';
 export { Alert } from './alert';
+export { message } from './message/index';
